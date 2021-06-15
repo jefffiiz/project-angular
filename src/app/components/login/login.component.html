@@ -1,0 +1,51 @@
+<div class="card">
+    <h3 class="card-header">Login page</h3>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4"></div>
+
+            <!-- Form body -->
+            <div class="col-4">
+                <h4>เข้าสู่ระบบ</h4>
+                <hr>
+
+                <form [formGroup]="form" (submit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label for="">ชื่อผู้ใช้ :</label>
+                        <input type="text" class="form-control" formControlName="username">
+                        <div [appValidate]="form.get('username')"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">รหัสผ่าน :</label>
+                        <input type="password" class="form-control" formControlName="password">
+                        <div [appValidate]="form.get('password')"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" *ngIf="!loading; else btnLoading" class="btn btn-warning btn-block">
+                            เข้าสู่ระบบ
+                        </button>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <span>หากยังไม่ลงทะเบียนกรุณา </span>
+                        <a routerLink="/register"><u>สมัครสมาชิก</u></a>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="col-4"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading button -->
+<ng-template #btnLoading>
+    <button type="submit" disabled="disabled" class="btn btn-warning btn-block">
+        กำลังโหลด..
+    </button>
+</ng-template>

@@ -1,0 +1,13 @@
+.lb-sex {
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+.add-remove-link {
+    margin-top: -10px;
+}
+
+a {
+    cursor: pointer;
+}

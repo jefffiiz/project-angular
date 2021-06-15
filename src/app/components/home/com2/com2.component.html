@@ -1,0 +1,79 @@
+<div class="card bg-light mb-3">
+    <h3 class="card-header">COM 2</h3>
+
+    <form (submit)="onSubmit()" [formGroup]="form">
+        <div class="card-body">
+            <div class="row">
+                <!-- เลือกเพศ -->
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="lb-sex">เพศ :</label>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" value="ผู้ชาย" id="man" formControlName="sex">
+                            <label for="man" class="form-check-label">ผู้ชาย</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" value="ผู้หญิง" id="women" formControlName="sex">
+                            <label for="women" class="form-check-label">ผู้หญิง</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ชื่อ -->
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">ชื่อ :</label>
+                        <input type="text" class="form-control" formControlName="firstname">
+                        <div [appValidate]="form.get('firstname')"></div>
+                    </div>
+                </div>
+
+                <!-- นามสกุล -->
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">นามสกุล :</label>
+                        <input type="text" class="form-control" formControlName="lastname">
+                        <div [appValidate]="form.get('lastname')"></div>
+                    </div>
+                </div>
+
+                <!-- เบอร์โทร -->
+                <div class="col-12">
+                    <label for="">เบอร์โทร :</label>
+                    <div class="form-group" *ngFor="let control of getPhonesForm.controls">
+                        <input type="text" class="form-control" [formControl]="control">
+                        <div [appValidate]="control"></div>
+                    </div>
+
+                    <div class="add-remove-link float-right">
+                        <a (click)="onAddPhone()" class="text-primary"><u><small>เพิ่มเบอร์โทร</small></u></a>
+                        <span class="text-muted"> | </span>
+                        <a (click)="onRemovePhone()" class="text-danger"><u><small>ลบเบอร์โทร</small></u></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="submit" *ngIf="!submitLoading; else submitBtnLoading" class="btn btn-block btn-warning">
+                        บันทึกข้อมูล
+                    </button>
+                </div>
+                <div class="col">
+                    <button (click)="onClose()" type="button" class="btn btn-block btn-danger">
+                        ยกเลิก
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- submit button loading template -->
+<ng-template #submitBtnLoading>
+    <button type="submit" disabled="disabled" class="btn btn-block btn-warning">
+        กำลังโหลด..
+    </button>
+</ng-template>

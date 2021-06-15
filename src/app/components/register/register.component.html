@@ -1,0 +1,82 @@
+<div class="card">
+    <h3 class="card-header">Register page</h3>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3"></div>
+
+            <!-- Form Body -->
+            <div class="col-6">
+                <form [formGroup]="form" (submit)="onSubmit()">
+                    <h4>สมัครสมาชิก</h4>
+                    <hr>
+
+                    <!-- Inputs -->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">ชื่อ :</label>
+                                <input type="text" class="form-control" formControlName="firstname">
+                                <div [appValidate]="form.get('firstname')"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">นามสกุล :</label>
+                                <input type="text" class="form-control" formControlName="lastname">
+                                <div [appValidate]="form.get('lastname')"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">ชื่อผู้ใช้งาน :</label>
+                                <input type="text" class="form-control" formControlName="username">
+                                <div [appValidate]="form.get('username')"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">รหัสผ่าน</label>
+                                <input type="text" class="form-control" formControlName="password">
+                                <div [appValidate]="form.get('password')"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checkbox confim -->
+                    <div class="from-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="configm" formControlName="confirm">
+                            <label for="configm" class="form-check-label">ยืนยันการสมัครสมาชิก</label>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <!-- Button and link -->
+                    <div class="form-group">
+                        <button type="submit" *ngIf="!loading; else btnLoading" [disabled]="!form.value['confirm']"
+                            class="btn btn-warning btn-block">
+                            สมัครสมาชิก
+                        </button>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <span>หากคุณสมัครสมาชิกแล้วกรุณา </span>
+                        <a routerLink="/login"><u>เข้าสู่ระบบ</u></a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-3"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading button -->
+<ng-template #btnLoading>
+    <button type="submit" disabled="disabled" class="btn btn-warning btn-block">
+        กำลังโหลด..
+    </button>
+</ng-template>

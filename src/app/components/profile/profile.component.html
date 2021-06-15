@@ -1,0 +1,57 @@
+<div class="card">
+    <h3 class="card-header">Profile page</h3>
+    <div class="card-body">
+
+        <table class="mt-4 mb-4" *ngIf="member">
+
+            <tr>
+                <th>Member ID</th>
+                <td>:</td>
+                <td>{{ member.id }}</td>
+            </tr>
+
+            <tr>
+                <th>Firstname</th>
+                <td>:</td>
+                <td>{{ member.firstname }}</td>
+            </tr>
+
+            <tr>
+                <th>Lastname</th>
+                <td>:</td>
+                <td>{{ member.lastname }}</td>
+            </tr>
+
+            <tr>
+                <th>Username</th>
+                <td>:</td>
+                <td>{{ member.username }}</td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td>:</td>
+                <td>{{ member.password }}</td>
+            </tr>
+
+            <tr>
+                <th>Logout</th>
+                <td>:</td>
+                <td>
+                    <button *ngIf="!loading; else btnLoading" (click)="onLogout()" class="btn btn-block btn-danger btn-sm">
+                        Logout
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+<!-- Loading btn -->
+<ng-template #btnLoading>
+    <button disabled="disabled" class="btn btn-block btn-danger btn-sm">
+        Loading...
+    </button>
+</ng-template>
